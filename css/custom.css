@@ -1,0 +1,465 @@
+/* @import url(//fonts.googleapis.com/earlyaccess/notosanstc.css); */
+/* @import url('https://fonts.googleapis.com/css?family=Fira+Sans'); */
+
+/* Common */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Noto Sans TC', sans-serif;
+}
+
+.cont {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Nav */
+#nav {
+  padding: .5rem 0 .5rem 1rem !important;
+}
+
+svg.hk01logo_black {
+  width: auto;
+  height: 37px;
+  margin: 0 20px 0;
+}
+
+.icon {
+  display: inline-flex;
+  align-self: center;
+}
+
+.navbar-brand .icon {
+  color: rgb(0, 51, 232);
+}
+
+.icon.baseline svg,
+.icon img {
+  position: relative;
+  fill: currentcolor;
+}
+
+.navbar {
+  min-height: 55px;
+  padding: 20px 0 0;
+  display: block;
+  background-color: #FFF !important;
+}
+
+.navbar-brand {
+  height: 37px;
+  padding: 0;
+  vertical-align: top;
+}
+
+/* .navbar-name {
+  margin-left: -4px;
+  vertical-align: top;
+  line-height: 37px;
+  font-size: 26px;
+  font-family: 'Microsoft JhengHei', 'LiHei Pro Medium', system-ui, sans-serif;
+} */
+.navbar-name {
+  height: 37px;
+  margin-left: 0.5em;
+  display: inline-block;
+  vertical-align: top;
+  font-size: 1.5rem;
+  line-height: 37px;
+}
+
+/* Status */
+.statusCont {
+  width: 100%;
+  max-height: 0;
+  display: block;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  z-index: 401;
+  background-color: #999;
+  color: #FFF;
+}
+
+/* Map */
+#Mapid {
+  height: calc(100vh - 78px);
+  /* width: 200vw;
+  height: calc(200vh - 156px);
+  transform-origin: 0 0;
+  transform: scale(0.5); */
+}
+
+/* Card */
+.wholeCard {
+  height: 100%;
+  position: fixed;
+  z-index: 400;
+}
+
+.wholeCard.short {
+  height: 40px;
+  transition: height 0.3s ease-out;
+}
+
+.wholeCard.short .fa-caret-up {
+  display: block;
+}
+
+.wholeCard .fa-caret-up {
+  display: none;
+}
+
+.wholeCard.short .fa-caret-down {
+  display: none;
+}
+
+.wholeCard .fa-caret-down {
+  display: inline-block;
+}
+
+.wholeCard.short .swiper-pagination {
+  visibility: hidden;
+}
+/* seperate search box and swiper*/
+/* .seperator{
+  width: 20px;
+  height: 20px;
+  background: rgba(0, 0, 0, 0);
+} */
+/* Swiper */
+.swiper-pagination-bullet {
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 20px;
+  font-size: 12px;
+  color: #000;
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.swiper-pagination-bullet-active {
+  color: #fff;
+  background: #007aff;
+}
+
+.swiper-container {
+  height: calc(100% - 40px);
+}
+
+.swiper-wrapper {
+  height: calc(100% - 65px);
+  /* overflow: hidden; */
+}
+
+.swiper-pagination:before {
+  content: "";
+  width: 64px;
+  height: 30px;
+  margin-left: -32px;
+  border-radius: 15px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 2;
+  background-color: #FFF;
+  box-shadow: 0 4px 16px -4px #AAA;
+}
+
+.swiper-pagination:after {
+  content: "";
+  width: 100%;
+  height: 30px;
+  position: absolute;
+  left: 0;
+  bottom: -40px;
+  z-index: 1;
+  box-shadow: 0 10px 40px 30px #FAFAFA;
+}
+
+.swiper-pagination-bullet {
+  position: relative;
+  z-index: 3;
+}
+
+/* Detail Table */
+.card-body {
+  height: calc(100% - 100px);
+  overflow-y: auto;
+}
+
+table tr td {
+  max-width: 450px;
+  height: auto;
+}
+
+.table-borderless tbody+tbody,
+.table-borderless td,
+.table-borderless th,
+.table-borderless thead th {
+  padding: 3px;
+}
+
+/* Detail Misc */
+.card-header {
+  padding: 0.5rem 0 0.5rem 1.25rem;
+  background-color: white;
+  width: 30rem;
+}
+
+.card-title {
+  padding: 0.5rem 1rem 0;
+  font-size: 1.2rem;
+  color: #000;
+}
+
+.card-body {
+  padding: 0 1.25rem;
+}
+
+.card_control {
+  float: right;
+  padding: 0 8px;
+  background-color: transparent;
+  border: 0;
+  font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 1;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  opacity: .8;
+  cursor: pointer;
+}
+
+.card_control_disable {
+  float: right;
+  padding: 0;
+  background-color: transparent;
+  border: 0;
+  font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 1;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  opacity: 0.3;
+  cursor: pointer;
+}
+
+.close-card {
+  width: 38px;
+  height: 38px;
+  position: absolute;
+  top: -38px;
+  right: 2px;
+  z-index: 110;
+  background-color: #FFF;
+}
+
+.cardCont {
+  height: 100%;
+}
+
+.listCont {
+  height: 100%;
+}
+
+.detailCont {
+  height: 100%;
+}
+
+.openingCont {
+  position: relative;
+}
+
+.cycCont {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+#collapseDiv {
+  height: 60px;
+  overflow: auto;
+  border: 1px solid red;
+}
+
+.openHourDetail {
+  list-style-type: none;
+  margin: 0;
+}
+
+.closeColor {
+  background-color: rgba(1, 9, 4, 0.4);
+}
+
+.openColor {
+  background-color: rgba(104, 239, 42, 0.5);
+}
+
+.noDataColor {
+  background-color: rgba(171, 136, 246, 0.59);
+}
+
+
+.swipeBack {
+  width: 40px;
+  height: 36px;
+  border-radius: 20px;
+  display: inline-block;
+  background-color: #007aff;
+  text-align: center;
+  line-height: 35px;
+  color: #FFF;
+}
+
+/* Sidebar */
+/* .nav_modal.modal-dialog {
+  margin: 0;
+  position: absolute;
+  right: 0;
+  height: 100%;
+}
+
+.modal-content {
+  height: 100%;
+  overflow: hidden;
+}
+
+.modal-body {
+  height: 100%;
+} */
+
+.sidebar {
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: auto;
+}
+
+.listings {
+  overflow: auto;
+  overflow-anchor: none;
+  padding-right: 8px;
+  padding-bottom: 65px;
+  background-color: #FAFAFA;
+}
+
+.listings-item {
+  margin: 8px 0;
+  border-radius: 8px;
+  font-size: 90%;
+  background-color: #FFF;
+}
+
+.listings-title {
+  width: 100%;
+  padding: 4px 8px 4px 2px;
+  display: inline-block;
+  vertical-align: top;
+  line-height: 1;
+}
+
+.listings-title:hover {
+  text-decoration: none;
+  background-color: #F7F7F7;
+}
+
+.listings-name {
+  margin: 0 0 4px 4px;
+  line-height: 1;
+}
+
+.listings-region {
+  margin: 0;
+  padding: 1px 3px;
+  border-radius: 3px;
+  float: right;
+}
+
+.color-island {
+  background-color: paleturquoise;
+}
+
+.color-kowloon {
+  background-color: palegreen;
+}
+
+.color-newTerritories {
+  background-color: rgb(241, 205, 241);
+}
+
+.listings-specialties {
+  margin: 0;
+  color: #000;
+}
+
+.listings-specialty {
+  margin: 0 3px 0 0;
+  padding: 3px 4px;
+  border-radius: 8px;
+  display: inline-block;
+  vertical-align: top;
+  /* color: #000; */
+}
+
+.listings-id {
+  margin: 0;
+  text-align: right;
+  font-size: 90%;
+  line-height: 1;
+}
+
+/* Dropdown */
+.dropdown {
+  width: 100%;
+}
+
+.aDropdownList {
+  width: 49%;
+}
+
+@media only screen and (max-width: 710px) {
+  .wholeCard {
+    bottom: 0;
+    height: 65%;
+    left: 0;
+    right: 0;
+    line-height: 1.8rem;
+  }
+}
+
+@media only screen and (min-width: 710px) {
+  .wholeCard {
+    max-width: 450px;
+    max-height: 75%;
+    width: 450px;
+    position: fixed;
+    top: 80px;
+    left: 60px;
+  }
+
+  .wholeCard.short {
+    height: 38px;
+    /* height: 130px; */
+  }
+
+  .close-card {
+    top: 0;
+    right: -38px;
+  }
+}
+
+/* Custom Cluser */
+.mycluster-0 {
+  background: powderblue;
+}
+
+.mycluster-1 {
+  background: palegreen;
+}
+
+.mycluster-2 {
+  background: mediumpurple;
+}
