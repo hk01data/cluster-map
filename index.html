@@ -6,10 +6,10 @@
 
 
     <meta property="fb:app_id" content="1651866545051541">
-    <meta property="og:title" content="((og-title))" />
-    <meta property="og:description" content="((og-description))" />
-    <meta property="og:site_name" content="((og-title)) x 01數據新聞" />
-    <meta property="og:image" content="https://datanews.hk01.com/map/((map-project))/images/og-image.jpg?v=201901211132" />
+    <meta property="og:title" content="((og-title)) | 香港01" />
+    <meta property="og:description" content="((og-description)) | 香港01" />
+    <meta property="og:site_name" content="((og-title)) | 香港01 x 01研數所" />
+    <meta property="og:image" content="https://datanews.hk01.com/map/((map-project))/images/og-image.jpg?v=201909231357" />
     <meta property="article:publisher" content="https://www.facebook.com/hk01.news/" />
     <meta property="article:author" content="https://www.facebook.com/hk01.news/" />
     <meta property="og:type" content="website" />
@@ -18,11 +18,11 @@
     <meta property="twitter:card" content="summary">
     <meta property="twitter:site" content="@hk01wemedia">
     <meta property="twitter:url" content="https://datanews.hk01.com/map/((map-project))/index.html">
-    <meta property="twitter:description" content="((og-description))">
-    <meta property="twitter:image" content="https://datanews.hk01.com/map/((map-project))/images/og-image.jpg?v=201901211132">
+    <meta property="twitter:description" content="((og-description)) | 香港01">
+    <meta property="twitter:image" content="https://datanews.hk01.com/map/((map-project))/images/og-image.jpg?v=201909231357">
 
-    <title>小一派位地圖 | 香港01</title>
-    <meta name="s" content="((keywords))">
+    <title>((og-title)) | 香港01</title>
+    <meta name="keywords" content="((keywords))">
     <meta name="description" content="((og-description))">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -39,6 +39,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.2/css/swiper.min.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="css/custom.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/holygrail.css" />
+    
 
     <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA==" crossorigin=""></script>
     <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster-src.js"></script>
@@ -49,16 +52,142 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.js" charset="utf-8"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <!-- Tracking -->
-    <script src="https://tracking-lib.hk01.com/piwik/piwik.min.js"></script>
-    <script src="https://tracking-lib.hk01.com/classic-piwik/trackerClient.lastest.js"></script>
-    <script src="js/trackEvent.js?v=201901211132"></script>
-    <script src="js/reactWeb.js?v=201901211132"></script>
+    
+    <!--<script src="trackingProd/trackEvent.js?v=201906251704"></script>
+    <script src="trackingTest/trackEvent_staging.js"></script>-->
+    <!-- <script src="js/reactWeb.js?v=201905301743"></script> -->
     <script src="https://www.googletagmanager.com/gtag/js"></script>
+    <script src='js/bootstrap-native-v4.min.js'></script>
+
+    <!-- Tracking -->
+    <script src="https://unpkg.com/core-js-bundle@3.9.0/minified.js"></script>
+    <script>
+        (function(d, s, id) {
+            var js,
+                fjs = d.getElementsByTagName(s)[0]
+            if (d.getElementById(id)) {
+                return
+            }
+
+            js = d.createElement(s)
+            js.id = id
+            js.src = 'https://cdn.hk01.com/sdk/hk01/v5.2.2/jssdk.js'
+                // js.src = '/dist/iife/index.js?ts=' + Date.now()
+            fjs.parentNode.insertBefore(js, fjs)
+        })(document, 'script', 'hk01-jssdk')
+    </script>
+
+    <script>
+        window.hk01AsyncInit = function() {
+            var appConfig = {
+                appId: 'datanews',
+                appVersion: '1.0',
+                sessionId: '',
+                service: 'datanews'
+            }
+
+            var trackerClientOptions = {
+                GA: {
+                    trackingId: 'UA-70981149-1'
+                },
+                Piwik: {
+                    trackingUrl: 'https://track.hk01.com/v2/piwik.php',
+                    siteId: 6
+                },
+                webviewBridgeEnabled: false
+            };
+
+            window.jssdk = new HK01(appConfig, trackerClientOptions)
+
+            // If version is ^5.0.0 or later, init sdk with async init
+            if (window.jssdk.init) {
+                window.jssdk.init().then(function init(instance) {
+                    return instance
+                })
+            }
+
+            // track a pageview
+            //try {
+            //    if (window.jssdk) window.jssdk.trackerClient.pageView({
+            //        GA: false,
+            //        Piwik: true
+            //    });
+            //} catch (error) {}
+
+            // track a pageview with custom href and path 
+        }
+            function fireMapPV(url){
+                try {
+                            if (window.jssdk) window.jssdk.trackerClient.pageView({
+                                GA: true,
+                                Piwik: true
+                           }, {}, url, document.location.href.replace(document.location.origin,""));
+                                //document.location.pathname + document.location.hash
+                                //console.log('okok')
+                    } 
+
+                catch (error) {} 
+
+            }
+
+            function removehash(string) {
+                return string.replace("#", "/");
+            }
+        
+    </script>
+
+    <script src='https://www.googletagservices.com/tag/js/gpt.js'></script>
+    <script>
+        var googletag = googletag || {};
+        googletag.cmd = googletag.cmd || [];
+    </script>
+
+    <script>
+        googletag.cmd.push(function () {
+            var iframeWidth = document.documentElement.clientWidth;
+            var adSizeMapping = googletag.sizeMapping()
+            //.addSize([1000, 200], [970,90])
+            .addSize([768, 200], [728, 50])
+            .addSize([480, 200], [468, 50])
+            .addSize([320, 400], [320, 50])
+            .addSize([0, 0] , [])
+            .build();
+
+            if (window.innerWidth > 970) {
+                adSizeMapping = googletag.sizeMapping()
+                .addSize([1000, 200], [970,90])
+                .addSize([768, 200], [728, 50])
+                .addSize([480, 200], [468, 50])
+                .addSize([320, 400], [320, 50])
+                .addSize([0, 0], [])
+                .build();
+            }
+
+            window.responsive_ad1 = googletag.defineSlot('/108346865/HK01_Map_Component', ((window.innerWidth > 960) ? [970,90] : [320, 50]), 'div-gpt-ad-1536895837023-0')
+            .defineSizeMapping(adSizeMapping)
+            .setTargeting('map_id', ['CD_Rest'])
+            .addService(googletag.pubads())
+            .setCollapseEmptyDiv(true);
+
+            googletag.pubads().enableSingleRequest();
+            googletag.enableServices();
+
+            googletag.pubads().addEventListener('slotRenderEnded', function (e) {
+                if (!e.isEmpty) {   // If the ad isn't empty
+                    document.getElementById(e.slot.getSlotElementId()).setAttribute('class', 'loaded');
+                    console.log('Ad Loaded');
+                    document.querySelector('.hg').classList.add('ad');
+                } else {
+                    console.log('Ad Empty');
+                }
+            });
+        });
+    </script>
 </head>
 
-<body>
-
+<body class="hg">
+    
+    <main class="hg-main">
     <div class="modal animated slideInRight" id="navModal" data-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="navModal" aria-hidden="true">
         <div class="modal-dialog nav_modal" role="document">
             <div class="modal-content nav_modal">
@@ -68,7 +197,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+
                     <ul class="list-unstyled list-inline">
 
                         <li class="list-inline-item"></li><img src="icon/grey.png" class="inline_img">沒有開放時間</li>
@@ -77,28 +206,63 @@
                         <a href="#" class="list-group-item list-group-item-action attribution" data-toggle="modal" data-target="#attributionModal">資料來源</a>
                     </ul>
                 </div>
-                <div class="modal-footer">香港01有限公司版權所有 © 2018</div>
+                <div class="modal-footer">香港01有限公司版權所有 © 2023</div>
             </div>
         </div>
     </div>
 
-    <nav class="navbar navbar-light bg-light" id="nav">
+    <!-- START -->
+                <div class="modal fade" id="welcomeModal" tabindex="-1" role="dialog" aria-labelledby="welcomeModal" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title mx-auto" id="welcomeModal">((og-title))</h5>
+                                <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>-->
+                            </div>
+                            <div class="modal-body text-center" >
+                                <p>即睇全港((og-description))資料</p>
+                                <p>&nbsp;</p>
+                                <ul class="list-unstyled list-inline">
+                                    <li class="list-inline-item"></li><img src="icon/nonNet.png" class="inline_img">酒店餐廳</li>
+                                    <li class="list-inline-item"></li><img src="icon/fd.png" class="inline_img">Fine Dining</li>
+                                </ul>
+                            </div>
+                            <button type="button" class="btn btn-danger mx-auto" data-dismiss="modal" value="C類運作模式">即睇餐廳</button>
+                                <br>
+                            <div class="modal-footer">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    <!-- END -->
+
+    <nav class="navbar" id="nav">
         <a class="navbar-brand" href="index.html">
+            
+         
+            <picture class="cover icon">
+                <source media='(min-width: 1441px)'
+                        srcset='images/size5.png'/>
+                <source media='(min-width: 1025px) and (max-width: 1440px)'
+                        srcset='images/size4.png'/>    
+                <source media='(min-width: 769px) and (max-width: 1024px)'
+                        srcset='images/size3.png'/>
+                <source media='(min-width: 421px) and (max-width: 768px)'
+                        srcset='images/size2.png'/>
+                <source media='(max-width: 420px)'
+                        srcset='images/size1.png'/>
+                <img class="cover" src='images/size1.png'/>
+            </picture>
+            <!--<img class="cover" src="images/size1.png" srcset="images/size1.png 420w, images/size2.png 768w, images/size3.png 1024w" height="55" alt="香港01"/>
             <div class="icon baseline">
+                
                 <img class="hk01logo" src="images/hk01branding3.png" height="37" alt="香港01" />
             </div>
-            <span class="navbar-name">小一派位地圖</span>
-        </a>
-        
-        <!-- <button class="navbar-toggler animated slideInRight faster" type="button" data-toggle="modal" data-target="#navModal" aria-controls="navModal" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button> -->
-        
-        <!-- <div class="statusCont">
-            <div class="cont">
-                <span>...</span>
-            </div>
-        </div> -->
+            <span class="navbar-name">C / D類型餐廳地圖</span>-->
+        </a> 
     </nav>
 
     <div id="Mapid"></div>
@@ -112,7 +276,7 @@
             </button>
 
             <div class="input-group md-form form-sm form-2 xpl-0">
-                <input class="form-control my-0 py-1 amber-border" id="keyword" type="text" placeholder="搜尋(學校名/校網)" aria-label="搜尋">
+                <input class="form-control my-0 py-1 amber-border" id="keyword" type="text" placeholder="搜尋 (餐廳名)" aria-label="搜尋">
                 <div class="input-group-append">
                     <span class="input-group-text amber lighten-3" id="searchBtn"><i class="fa fa-search text-grey" aria-hidden="true"></i></span>
                 </div>
@@ -127,9 +291,8 @@
                             </div>
                             <div id="filterCont">
                                 <div class="btn-group dropdown"></div>
-                            </div>　
+                            </div>
                             <button type="button" class="resetFilter btn btn-secondary">重設</button>
-                            <!-- <button type="button" class="btn btn-success" id="search">搜尋</button> -->
                         </div>
                         <div class="listCont">
                             <div class="sidebar">
@@ -143,25 +306,14 @@
                             <div class="card-title">
                                 <div class="openingCont">
                                     <span id="swipeBack" class="swipeBack"><i class="fas fa-arrow-left"></i></span>
-                                    <!-- <span id="openStateIcon"><i class="far fa-lightbulb"></i></span> -->
-                                    <!-- <span id="toList">返回</span> -->
                                     <div class="cycCont">
-                                        <button type="button" disabled=false class="card_control" id="nextBtn" data-dismiss="modal" aria-label="next Btutton">
-                                            <i class="fas fa-chevron-right"></i>
-                                        </button>
-                                        <button type="button" disabled=false class="card_control" id="prevBtn" data-dismiss="modal" aria-label="previous button">
-                                            <i class="fas fa-chevron-left"></i>
-                                        </button>
+                                        <span id="nextBtn" class="card_control" disabled=false><i class="fas fa-chevron-right"></i></span>
+                                        <span id="prevBtn" class="card_control" disabled=false><i class="fas fa-chevron-left"></i></span>
                                     </div>
                                 </div>
-                                <!-- <div class="headlineGroup">
-                                    <div class="nameCont">
-                                        <p>
-                                            <span id="theName">名稱</span>
-                                        </p>
-                                    </div>
-                                </div> -->
                             </div>
+
+                            <div id="logosContainer" class=""></div>
 
                             <div id="tableContainer" class="card-body">
                                 <table id="tableContent">
@@ -171,7 +323,7 @@
                                 </table>
                             </div>
 
-                            <div id="collapseDiv" style="display: none;">
+                            <!-- <div id="collapseDiv" style="display: none;">
                                 <i class="fas fa-clock"></i>
                                 <span>開放時間</span>
                                 <a id="todayTime" data-toggle="collapse" href="#openHourDetail" aria-expanded="false" aria-controls="openHourDetail">detail</a>
@@ -180,7 +332,7 @@
                                 </span>
 
                                 <div class="collapse openHourDetail" id="openHourDetail">Open Hour Detail</div>
-                            </div>
+                            </div> -->
 
                             <div id="cardFooter" class="card-footer" style="visibility: hidden"></div>
                         </div>
@@ -191,11 +343,23 @@
             </div>
     </div>
 </div>
-    <script src="js/util.js?v=201901211132"></script>
-    <script src="js/filterTerms.js?v=201901211132"></script>
-    <script src="js/themap.js?v=201901211132"></script>
+    <script src="js/util.js?v=201909231357"></script>
+    <script src="js/filterTerms.js?v=201909231357"></script>
+    <script src="js/themap.js?v=201909231357"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-
+    </main>
+<footer class="hg-footer" id="footer">
+        <!-- /108346865/HK01_Map_Component -->
+    <div id='div-gpt-ad-1536895837023-0'>
+            <script>
+                
+                googletag.cmd.push(function () {
+                    googletag.display('div-gpt-ad-1536895837023-0');
+                });
+            </script>
+        </div>
+</footer>
 </body>
+
 
 </html>

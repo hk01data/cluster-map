@@ -10,3 +10,12 @@ https://gis.stackexchange.com/questions/123042/changing-size-of-cluster-based-on
 ## Markercluster pie charts
 http://bl.ocks.org/gisminister/10001728
 
+
+# Update notes
+
+- [2023-04-07]
+    - Combined Chrismas Restaurant Map 2021 into Bar map 2019
+    - Use newer tracking
+    - Added `script/` folder for generating geojson from CSV files
+    - Move geojson under `js/geojson/`, updated path in `themap.js`
+    - Should use`trackEvent_v2.js` instead of `trackEvent.js`

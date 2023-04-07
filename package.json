@@ -1,5 +1,8 @@
 {
   "name": "202211_barmap",
   "version": "0.1.0",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "papaparse": "^5.3.2"
+  }
 }

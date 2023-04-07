@@ -1,0 +1,53 @@
+/* **************************
+
+	Holy Grail Layout with CSS Grid
+
+************************** */
+
+/* Define grid areas */
+.hg-header { grid-area: header; }
+.hg-footer { grid-area: footer; }
+.hg-main { grid-area: main; }
+.hg-left { grid-area: navigation; }
+.hg-right { grid-area: ads; }
+#div-gpt-ad-1536895837023-0,
+.hg-footer {
+	max-width: 100%;
+	overflow: hidden;
+}
+
+/* .hg {
+	display: grid;
+	grid-template-areas: "header header header"
+	                     "navigation main ads"
+	                     "footer footer footer";
+
+	grid-template-columns: 150px 1fr 150px;
+
+	grid-template-rows: 90px
+						1fr
+						90px;
+
+	min-height: 100vh;
+}
+
+
+
+@media screen and (max-width: 600px) {
+	.hg {
+		grid-template-areas: "header"
+		                     "navigation"
+		                     "main"
+		                     "ads"
+		                     "footer";
+
+		grid-template-columns: 100%;
+		grid-template-rows: 100px
+							50px
+							1fr
+							50px
+							30px;
+	}
+} */
+
+

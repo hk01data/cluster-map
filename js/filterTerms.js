@@ -6,7 +6,8 @@ var island = {
 };
 
 var kowloon = {
-    "油尖旺區": [],
+    "油尖區": [],
+    "旺角區": [],
     "深水埗區": [],
     "九龍城區": [],
     "黃大仙區": [],
@@ -45,8 +46,11 @@ var schoolNet = {
        "其他":[],
     },
     // kowloon
-    "油尖旺區": {
+    "油尖區": {
         "31 (尖沙咀、佐敦、油麻地...)": [],
+        "其他":[],
+    },
+    "旺角區": {
         "32 (旺角、大角咀...)":[],
         "其他":[],
     },
@@ -171,11 +175,11 @@ var matchField = [{
         "initVal": "不限",
         "geojsonFieldName": "FinanceTypeChi"
     },
-    {
+    /*{
         "varName": "StudentGenderChi",
         "initVal": "不限",
         "geojsonFieldName": "StudentGenderChi"
-    },
+    },*/
     {
         "varName": "schoolNet",
         "initVal": "不限",
@@ -187,28 +191,32 @@ var filtersTerms = [{
         "name": "docLang",
         "container": "#filterCont > div",
         "varName": "FinanceTypeChi",
-        "displayName": "選擇資助類別",
+        // "displayName": "選擇資助類別",
+        // "initVal": "不限",
+        "displayName": "選擇餐廳類別",
         "initVal": "不限",
         "terms": {
             "不限": [2446, ""],
-            "資助": [2446, ""],
-            "官立": [2446, ""],
-            "私立及直資": [373, ""]
+            //"資助": [2446, ""],
+            //"官立": [2446, ""],
+            //"私立及直資": [373, ""]
+            "酒店": [2446, ""],
+            "FineDining": [2446, ""]
         }
-    },
+    }/*,
     {
         "name": "docSpecialty",
         "container": "#filterCont > div",
         "varName": "StudentGenderChi",
         "displayName": "選擇學校類別",
-        "initVal": "不限",
+        "initVal": '不限',//"不限",
         "terms": {
             "不限": [2446, ""],
             "男女": [270, ""],
             "男": [207, ""],
             "女": [181, ""]
         }
-    }
+    }*/
 ];
 
 var sidebarField = [

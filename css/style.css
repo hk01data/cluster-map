@@ -1,0 +1,101 @@
+/* Reset */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font: inherit;
+	font-size: 100%;
+	vertical-align: baseline;
+}
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+
+
+/* Custom Styles */
+.hg-header {
+	/* background-color: #ffdb3a; */
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.hg-footer {
+	/* background-color: rgb(100, 100, 100); */
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.hg-left,
+.hg-right {
+	text-align: center;
+}
+
+.hg-header,
+.hg-footer,
+.hg-left,
+.hg-right {
+    /* background-color: rgb(80, 80, 80); */
+}
+
+
+.hg {
+    display: grid;
+    grid-template-areas: "main" "footer";
+    grid-template-rows: 1fr 0;
+    min-height: 100vh;
+    height: 100vh;
+    /* Fallback for browsers that do not support Custom Properties */
+    height: calc(var(--vh, 1vh) * 100);
+}
+
+.hg.ad {
+    grid-template-rows: 1fr 50px;
+}
+
+.hg.ad #mapid {
+    height: 100%;
+    width: 100%;
+}
+
+@media only screen and (min-width: 468px) {
+    .hg.ad {
+    grid-template-rows: 1fr 60px;
+    }
+}
+
+@media only screen and (min-width: 728px) {
+    .hg.ad {
+    grid-template-rows: 1fr 90px;
+    }
+}
+
+.hg-main {
+    position: relative;
+    overflow: hidden;
+}

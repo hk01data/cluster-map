@@ -14,6 +14,7 @@ var geometryObjectList = [];
 //     var href = this.getAttribute('href');
 // });
 function addEvent(parent, evt, selector, handler) {
+    //console.log(parent, evt, selector, handler)
     // let target = (parent === document) ? document.getElementsByTagName('html')[0] : parent;
     evt.split(' ').map(eventName => {
         parent.addEventListener(eventName, function (event) {
@@ -237,35 +238,87 @@ function adaptableClass(){
 }
 
 function tableContent (allProperties) {
+    var schoolNet = allProperties.schoolNet;
+    if (schoolNet !== "/"){
+        var tableTemplate = `
+        <table id="table1" ${(window.outerWidth > G['desktopWidth']) ? "class='table table-borderless table-hover swiper-no-swiping'" : "class='table table-borderless table-hover'"}>
+            <tbody>
+                <tr>
+                    <td><i class="fas fa-school"></i></td>
+                    <td>${allProperties.name}</td>
+                </tr>
+                
+                <tr>
+                    <td><i class="fas fa-compass"></i></td>
+                    <td>${allProperties.district}</td>
+                </tr>
 
-    var tableTemplate = `
-    <table id="table1" ${(window.outerWidth > G['desktopWidth']) ? "class='table table-borderless table-hover swiper-no-swiping'" : "class='table table-borderless table-hover'"}>
-        <tbody>
-            <tr>
-                <td><i class="fas fa-school"></i></td>
-                <td>${allProperties.name}</td>
-            </tr>
-            <tr>
-                <td><i class="fas fa-compass"></i></td>
-                <td>${allProperties.district}&nbsp;&nbsp;&nbsp;&nbsp;${allProperties.schoolNet} 校網</pre></td>
-            </tr>
-            <tr>
-                <td><i class="fas fa-route"></i></td>
-                <td>${allProperties.SchoolAddressChi}</td>
-            </tr>
-            <tr>
-                <td><i class="fas fa-info-circle"></i></td>
-                <td>學校類別   ${allProperties.StudentGenderChi}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;資助類別   ${allProperties.FinanceTypeChi}</td>
-            </tr>
-            <tr>
-                <td><i class="fas fa-phone"></i></td>
-                <td>${allProperties.TelephoneNumber}</td>
-            </tr>            
-        </tbody>
-    </table>
-    `;
+                <tr>
+                    <td><i class="fas fa-route"></i></td>
+                    <td>${allProperties.SchoolAddressChi}</td>
+                </tr>
 
-    document.querySelector('#collapseDiv').style.display = 'none';
+                <tr>
+                    <td><i class="fas fa-info-circle"></i></td>
+                    <td>類別：${allProperties.FinanceTypeChi}</td>
+                </tr>
+
+                <tr>
+                    <td><i class="fas fa-tags"></i></td>
+                    <td>菜式：${allProperties.qualification}</td>
+                </tr>
+
+                <tr>
+                    <td><i class="far fa-bookmark"></i></td>
+                    <td>${allProperties.TelephoneNumber}</td>
+                </tr>
+
+                            
+            </tbody>
+        </table>
+        `;
+    } else{
+        // <td>校長收生貼士：<a id="articleLink" href=${allProperties.interviewTips}?utm_source=DatanewsMap&utm_medium=referral&utm_campaign=PrimarySchool19" target="_blank">》》 最新內容</a></td>
+        var tableTemplate = `
+        <table id="table1" ${(window.outerWidth > G['desktopWidth']) ? "class='table table-borderless table-hover swiper-no-swiping'" : "class='table table-borderless table-hover'"}>
+            <tbody>
+                <tr>
+                    <td><i class="fas fa-school"></i></td>
+                    <td>${allProperties.name}</td>
+                </tr>
+                
+                <tr>
+                    <td><i class="fas fa-compass"></i></td>
+                    <td>${allProperties.district}</td>
+                </tr>
+
+                <tr>
+                    <td><i class="fas fa-route"></i></td>
+                    <td>${allProperties.SchoolAddressChi}</td>
+                </tr>
+
+                <tr>
+                    <td><i class="fas fa-info-circle"></i></td>
+                    <td>類別：${allProperties.FinanceTypeChi}</td>
+                </tr>
+
+                <tr>
+                    <td><i class="fas fa-tags"></i></td>
+                    <td>菜式：${allProperties.qualification}</td>
+                </tr>
+
+                <tr>
+                    <td><i class="far fa-bookmark"></i></td>
+                    <td>${allProperties.TelephoneNumber}</td>
+                </tr>
+
+                           
+            </tbody>
+        </table>
+        `;
+    }
+
+    // document.querySelector('#collapseDiv').style.display = 'none';
     var container = document.getElementById('tableContainer');
     container.innerHTML = ``;
     container.innerHTML=tableTemplate;
@@ -273,25 +326,34 @@ function tableContent (allProperties) {
 }
 
 /**
+ * Category: Card(Logos)
+ * Load Logos to cards
+ */
+function logosContent (allProperties) {
+  var container = document.getElementById('logosContainer');
+  container.innerHTML = `<a href="" title="123" style="width:64px; height: 64px; display: inline-block; font-size: 12px; line-height: 1; border: 1px solid black;"> <img width="64" height="64" src="" alt="${allProperties.name}" />.</a>\n `;
+}
+
+/**
  * Category: Card(Table)
  * To synchornize update date in Airtable, and show it on table in Card
  * @param string clickedId
  */
-function updateProperties(clicedId){
-    allProperties  = '';
-    for (var rowIndex in G['theUpdateJson'].records){
-        if (typeof(G['theUpdateJson'].records[rowIndex].fields.updateDate) !== 'undefined'){
-            var idUpdated = G['theUpdateJson'].records[rowIndex].fields.id;
-            console.log(idUpdated)
-            console.log(clicedId === idUpdated)
-            if (clicedId === idUpdated){
-                allProperties = G['theUpdateJson'].records[rowIndex].fields;
-            }
-        }
+// function updateProperties(clicedId){
+//     allProperties  = '';
+//     for (var rowIndex in G['theUpdateJson'].records){
+//         if (typeof(G['theUpdateJson'].records[rowIndex].fields.updateDate) !== 'undefined'){
+//             var idUpdated = G['theUpdateJson'].records[rowIndex].fields.id;
+//             console.log(idUpdated)
+//             console.log(clicedId === idUpdated)
+//             if (clicedId === idUpdated){
+//                 allProperties = G['theUpdateJson'].records[rowIndex].fields;
+//             }
+//         }
 
-    }
-    return allProperties;
-}
+//     }
+//     return allProperties;
+// }
 
 
 /**
@@ -362,10 +424,17 @@ function updateView (hospitalCoordinate) {
     var bounds = G['mymap'].getBounds();
     var lat_bounds = bounds._northEast.lat - bounds._southWest.lat;
     var lng_bounds = bounds._northEast.lng - bounds._southWest.lng;
+    // if (window.outerWidth > G['desktopWidth']) {
+    //     G['mymap'].setView([lat, lng - lng_bounds * 0.1]); // desktop
+    // } else {
+    //     G['mymap'].setView([lat - lat_bounds * 0.3, lng]); // mobile
+    // }
     if (window.outerWidth > G['desktopWidth']) {
-        G['mymap'].setView([lat, lng - lng_bounds * 0.1]); // desktop
+        // G['mymap'].panTo([center[1], center[0] - lng_bounds * 0.1]); // desktop
+        G['mymap'].panTo([center[1] - lat_bounds * 0.3, center[0] - lng_bounds * 0.3]); // desktop
+        //console.log("desktop panTo")
     } else {
-        G['mymap'].setView([lat - lat_bounds * 0.3, lng]); // mobile
+        G['mymap'].panTo([center[1] - lat_bounds * 0.3, center[0]]); // mobile
     }
 }
 
@@ -406,11 +475,11 @@ function addOneToSidebar (inObj) {
         ${G['sidebar'].map(o => { return o; })}
     `;
     var template = `<li class="listings-item" id="listing-${props.id}">
-        <a class="listings-title" href="#/id/${props.id}">
+        <div class="listings-title" id="#/id/${props.id}">
             <p class="listings-region color-${region}"><small class="text-muted">${district}</small></p>
             <p class="listings-name">${name}</p>
             ${addtionalFields}
-        </a>
+        </div>
     </li>`;
     // var template = `<li class="listings-item" id="listing-${props.id}">
     //     <a class="listings-title" href="#/id/${props.id}">
@@ -510,13 +579,15 @@ function positionMarkerZoom (hitMarker) {
 
     // Show Details
     var allProperties = hitMarker[0].properties;
-    var clicedId = (allProperties.id).toString();
-    newData = updateProperties(clicedId);
-    if (newData !== ''){
-        tableContent(newData);
-    } else{
-        tableContent(allProperties)
-    }
+    // var clicedId = (allProperties.id).toString();
+    // newData = updateProperties(clicedId);
+    // if (newData !== ''){
+    //     tableContent(newData);
+    // } else{
+    //     tableContent(allProperties)
+    // }
+    tableContent(allProperties);
+    logosContent(allProperties);
     G['gSwiper'].slideTo((hitMarker.length > 1 ? 0 : 1), G['gSwiperDuration'], false);
 
     // Pan and Zoom
@@ -529,8 +600,9 @@ function positionMarkerZoom (hitMarker) {
         var lat_bounds = bounds._northEast.lat - bounds._southWest.lat;
         var lng_bounds = bounds._northEast.lng - bounds._southWest.lng;
         if (window.outerWidth > G['desktopWidth']) {
-            G['mymap'].panTo([center[1], center[0] - lng_bounds * 0.1]); // desktop
-            console.log("desktop panTo")
+            // G['mymap'].panTo([center[1], center[0] - lng_bounds * 0.1]); // desktop
+            G['mymap'].panTo([center[1] - lat_bounds * 0.3, center[0] - lng_bounds * 0.3]); // desktop
+            //console.log("desktop panTo")
         } else {
             G['mymap'].panTo([center[1] - lat_bounds * 0.3, center[0]]); // mobile
         }
@@ -545,21 +617,24 @@ function positionMarkerZoom (hitMarker) {
  */
 function processHash (hash) {
     // var id = hash.replace('#', '');
-    console.log('see the hash')
-    console.log(hash)
+    //console.log('see the hash')
+    // console.log(hash)
     var idRegexp = /id\/(.+)&?/g;
+    //console.log(idRegexp)
     var match = idRegexp.exec(hash);
-    var id = match[1];
-    console.log('hash', hash, 'id:', id);
-
-    var hitMarker = G['theMapGeoJson'].features.filter(function (o) {
-        return (o.properties.id.toString()) ?
-            o.properties.id.toString() === id:
-            false
-    });
-
-    if (hitMarker.length) {
-        positionMarkerZoom(hitMarker);
+    if (match !== null){
+        var id = match[1];
+        //console.log('hash', hash, 'id:', id);
+    
+        var hitMarker = G['theMapGeoJson'].features.filter(function (o) {
+            return (o.properties.id.toString()) ?
+                o.properties.id.toString() === id:
+                false
+        });
+    
+        if (hitMarker.length) {
+            positionMarkerZoom(hitMarker);
+        }
     }
 }
 
@@ -575,6 +650,8 @@ function matchedCrtiteria (o) {
         var initVal = inObj.initVal;
         var geojsonFieldName = inObj.geojsonFieldName;
 
+        
+        
         return ((G[varName] === initVal) ?
             true :
             (x.properties[geojsonFieldName]) ?
@@ -596,20 +673,20 @@ function matchedCrtiteria (o) {
             switch(G[b.varName]){
                 case "不限":
                     return a && true;
-                case "資助":
+                case "酒店":
                     return a && ( (o.properties[b.geojsonFieldName]) ?
                     o.properties[b.geojsonFieldName] === G[b.varName] :
                     true);
-                case "官立":
+                case "FineDining":
                     return a && ( (o.properties[b.geojsonFieldName]) ?
                     o.properties[b.geojsonFieldName] === G[b.varName] :
                     true);
-                case "私立及直資":
-                    if (((o.properties[b.geojsonFieldName]).indexOf("私立") !== -1)||((o.properties[b.geojsonFieldName]).indexOf("計劃") !== -1)){
-                        return a && true;
-                    }else{
-                        return a && false;
-                    }                 
+                //case "私立及直資":
+                   // if (((o.properties[b.geojsonFieldName]).indexOf("私立") !== -1)||((o.properties[b.geojsonFieldName]).indexOf("計劃") !== -1)){
+                    //    return a && true;
+                    //}else{
+                       // return a && false;
+                   // }                 
             }
         }else {
             return (a && smallFilter(b, o))
@@ -621,13 +698,13 @@ function matchedCrtiteria (o) {
     
     var matched = isMatch &&
         ((G['keyword'] === '') ? true : (
-            (o.properties['name'].indexOf(G['keyword']) !== -1) ||
-            (o.properties['TelephoneNumber'].indexOf(G['keyword']) !== -1) ||
+            (o.properties['name'].indexOf(G['keyword']) !== -1) 
+            // (o.properties['TelephoneNumber'].indexOf(G['keyword']) !== -1) ||
             // (fax.indexOf(G['keyword']) !== -1) ||
-            (o.properties['SchoolAddressChi'].indexOf(G['keyword']) !== -1) ||
-            (o.properties['FinanceTypeChi'].indexOf(G['keyword']) !== -1) ||
-            (o.properties['StudentGenderChi'].indexOf(G['keyword']) !== -1) ||
-            (o.properties['schoolNet'].indexOf(G['keyword']) !== -1) 
+            // (o.properties['SchoolAddressChi'].indexOf(G['keyword']) !== -1) ||
+            // (o.properties['FinanceTypeChi'].indexOf(G['keyword']) !== -1) ||
+            // (o.properties['StudentGenderChi'].indexOf(G['keyword']) !== -1) ||
+            // (o.properties['schoolNet'].indexOf(G['keyword']) !== -1) 
         ));
     // console.log("uuuuuu",matched)
     return matched;
@@ -677,25 +754,28 @@ function loadGeoJSON (cb, filterFunc) {
             var mm = {};
             // everyHeatDot = {}
             function addAPoint (layer, latlng, options) {
-                var dotCoordinates = feature.geometry.coordinates;
+                // var dotCoordinates = feature.geometry.coordinates;
 
                 mm = L.marker(latlng, options).on('click', function (e) {
-                    console.log(`mmm`)
+                    //console.log(`mmm`)
                     // if (isActivate !== 'yes') {
                     // enableBtn();
                     // }
                     var allProperties = feature.properties;
-                    console.log(allProperties)
-                    var clicedId = (allProperties.id).toString();
-                    newData = updateProperties(clicedId);
-                    if (newData !== ''){
-                        tableContent(newData);
-                    } else{
-                        tableContent(allProperties)
-                    }
+                    // console.log(allProperties)
+                    // var clicedId = (allProperties.id).toString();
+                    // newData = updateProperties(clicedId);
+                    // if (newData !== ''){
+                    //     tableContent(newData);
+                    // } else{
+                    //     tableContent(allProperties)
+                    // }
+                    // rewrite G['currIndex']
+                    G['currIndex'] = allProperties['id'];
+                    tableContent(allProperties)
                     document.querySelector('#wholeCard').classList.remove('short');
                     if (Object.keys(G['gSwiper']).length) {
-                        console.log('gSwiper');
+                        //console.log('gSwiper');
                         G['gSwiper'].slideTo(1, G['gSwiperDuration'], false);
                     }
 
@@ -704,32 +784,38 @@ function loadGeoJSON (cb, filterFunc) {
                     var center = feature.geometry.coordinates;
                     var lat_bounds = bounds._northEast.lat - bounds._southWest.lat;
                     var lng_bounds = bounds._northEast.lng - bounds._southWest.lng;
+
                     if (window.outerWidth > G['desktopWidth']) {
-                        G['mymap'].panTo([center[1], center[0] - lng_bounds * 0.1]); // desktop
+                        // G['mymap'].panTo([center[1], center[0] - lng_bounds * 0.1]); // desktop
+                        G['mymap'].panTo([center[1] - lat_bounds * 0.3, center[0] - lng_bounds * 0.3]); // desktop
+                        //console.log("desktop panTo")
                     } else {
                         G['mymap'].panTo([center[1] - lat_bounds * 0.26, center[0]]); // mobile
                     }
-
                     //change two district buttons
                     var areaValue = allProperties.district || allProperties.地區;
                     var markerArea = formatArea(areaValue);
 
                     document.querySelector('#wholeCard').classList.remove('init-box');
+                    // }, '', `#/id/${allProperties['id']}&utm_source=${G['entrySource']}`);
 
                     window.history.pushState({
                         'id': allProperties['id']
-                    }, '', `#/id/${allProperties['id']}&utm_source=${G['entrySource']}`);
+                    }, '', `#/id/${allProperties['id']}`);
 
-                    fireArticlePV(removehash(window.location.href));
-                    fireEvent(`${G['trackingCate']}`, 'click_place', {
-                        'place_name': allProperties['name'],
-                        'place_lat': e.latlng.lat,
-                        'place_lng': e.latlng.lng,
-                        'place_district': allProperties['district'],
+                    //fireArticlePV(removehash(window.location.href));
+                    fireMapPV(removehash(window.location.href))
+                    /console.log('wow')
+                    /*fireEvent(`${G['trackingCate']}`, 'click_marker', {
+                        'school_id':allProperties['id'],
+                        'school_name': allProperties['name'],
+                        'school_lat': e.latlng.lat,
+                        'school_lng': e.latlng.lng,
+                        'school_district': allProperties['district'],
                         'anonymous_id': getAnonymousId(),
                         'session_id': getSessionId(),
                         'ts': Date.now()
-                    });
+                    });*/
                 });
                 overlayMapsList[layer].push(mm);
             }
@@ -741,8 +827,9 @@ function loadGeoJSON (cb, filterFunc) {
                 var typeName = iconbuilderObj['type'];
                 var iconType = L.Icon.extend(iconFactory[typeName]['options']);
                 // options.icon = new iconType(iconBuild[layerName]['options']);
-                if (feature['properties']['schoolNet']!= '/'){
-                    options.icon = new iconType({"iconUrl":"icon/net.png"});
+                //if (feature['properties']['schoolNet']!= '/'){
+                if (feature['properties']['FinanceTypeChi'] == 'FineDining'){
+                    options.icon = new iconType({"iconUrl":"icon/fd.png"});
                 } else{
                     options.icon = new iconType({"iconUrl":"icon/nonNet.png"});
                 }
@@ -789,7 +876,7 @@ function loadGeoJSON (cb, filterFunc) {
         if (G['useLayer']) {
             // cluster and layer
             Object.keys(overlayMapsListControl).map(o => {
-                console.log(`dfvklb dhiuejwnfdkvb`, o)
+                //console.log(`dfvklb dhiuejwnfdkvb`, o)
                 G['markerClusters'].checkIn(overlayMaps[o]);
                 overlayMaps[o].addTo(G['mymap']);
             });
@@ -799,23 +886,23 @@ function loadGeoJSON (cb, filterFunc) {
     } else {
         // use normal
     }
-    console.log(`overlayMaps`, overlayMaps);
+    //console.log(`overlayMaps`, overlayMaps);
     // heat map
-    if(G['useHeatMap']){
-        // var hh = forHeatMap.slice(1,10)
-        heatMapData = {data: forHeatMap}
-        console.log(heatMapData)
-        var heatmapLayer = new HeatmapOverlay(G['heatMapCfg']);
-        heatmapLayer.setData(heatMapData);
-        G['mymap'].addLayer(heatmapLayer);
+    // if(G['useHeatMap']){
+    //     // var hh = forHeatMap.slice(1,10)
+    //     heatMapData = {data: forHeatMap}
+    //     console.log(heatMapData)
+    //     var heatmapLayer = new HeatmapOverlay(G['heatMapCfg']);
+    //     heatmapLayer.setData(heatMapData);
+    //     G['mymap'].addLayer(heatmapLayer);
         
-        if (overlayMapsListControl['heatMap']['type'] === 'base') {
-            theBaseMaps['heatMap'] = heatmapLayer
-        }
-        if (overlayMapsListControl['heatMap']['type'] === 'overlay') {
-            theOverlayMaps['heatMap'] = heatmapLayer
-        }
-    }
+    //     if (overlayMapsListControl['heatMap']['type'] === 'base') {
+    //         theBaseMaps['heatMap'] = heatmapLayer
+    //     }
+    //     if (overlayMapsListControl['heatMap']['type'] === 'overlay') {
+    //         theOverlayMaps['heatMap'] = heatmapLayer
+    //     }
+    // }
     if (G['useLayer']) {
         // Add control layer
         L.control.layers(theBaseMaps, theOverlayMaps, {
@@ -830,7 +917,7 @@ function loadGeoJSON (cb, filterFunc) {
         // use normal
         G['mymap'].addLayer(G['markers']);
     }
-    console.log('m: ', G['matched_result']);
+    //console.log('m: ', G['matched_result']);
 
     // console.log('heatMapData', forHeatMap)
 
@@ -850,12 +937,65 @@ function loadAndSidebar (reset) {
             G['gSwiper'].slideTo(0, G['gSwiperDuration'], false);
         }
         var arrF = G['theMapGeoJson'].features.filter(matchedCrtiteria);
-        console.log('中', arrF.length)
-        if (arrF.length > 2){
-            cycleMatched(arrF)
+        //console.log('中', arrF.length)
+        if (arrF.length){
+            // if only one schoool match
+            // diable the cycle arrow
+            // directly to go slide to 
+            if (arrF.length === 1) {
+                // directly show this school's detail
+                G['gSwiper'].slideTo(1, G['gSwiperDuration'], false);
+                // if cycle arrow still function, remove class property from an element
+
+                if (document.querySelector('#prevBtn').classList.contains("card_control")){
+                    document.querySelector('#prevBtn').classList.replace("card_control", "card_control_disable");
+                    document.querySelector('#nextBtn').classList.replace("card_control", "card_control_disable");
+                    document.querySelector('#nextBtn').setAttribute('disabled', true);
+                    document.querySelector('#prevBtn').setAttribute('disabled', true);
+                }
+            } else if (!(document.querySelector('#prevBtn').classList.contains("card_control"))){
+                document.querySelector('#prevBtn').classList.replace("card_control_disable", "card_control")
+                document.querySelector('#nextBtn').classList.replace("card_control_disable", "card_control") 
+                document.querySelector('#nextBtn').setAttribute('disabled', false);
+                document.querySelector('#prevBtn').setAttribute('disabled', false); 
+            }
+            // cycleMatched(arrF)
+            G['matchedResult'] = arrF;
+            //console.log(G['matchedResult'])
+            G['currIndex'] = arrF[0].properties.id;
+            // shot the detail of first item to table content
+            tableContent(arrF[0].properties)
+        } else if (document.querySelector('#prevBtn').classList.contains("card_control")){
+            document.querySelector('#prevBtn').classList.replace("card_control", "card_control_disable");
+            document.querySelector('#nextBtn').classList.replace("card_control", "card_control_disable");
+            document.querySelector('#nextBtn').setAttribute('disabled', true);
+            document.querySelector('#prevBtn').setAttribute('disabled', true);
+
+            var container = document.getElementById('tableContainer');
+            container.innerHTML = `<font color="#B7B2B2">未有搜尋結果`
+                                   +`，請檢查搜索字眼</font>`;
+            G['gSwiper'].slideTo(1, G['gSwiperDuration'], false);
+
+        } else {
+            document.querySelector('#prevBtn').classList.replace("card_control", "card_control_disable");
+            document.querySelector('#nextBtn').classList.replace("card_control", "card_control_disable");
+            document.querySelector('#nextBtn').setAttribute('disabled', true);
+            document.querySelector('#prevBtn').setAttribute('disabled', true);
+            var container = document.getElementById('tableContainer');
+            container.innerHTML = `<font color="#B7B2B2">未有搜尋結果`
+                                    +`，請檢查搜索字眼</font>`;
+            G['gSwiper'].slideTo(1, G['gSwiperDuration'], false);
+                       
         }
 
         if (reset) {
+            // clean the table content
+            var container = document.getElementById('tableContainer');
+            G['currIndex'] = -1;
+            container.innerHTML = `随隨便睇睇？<br>&nbsp;&nbsp;&nbsp;點擊<b>右上角< >圖標</b>，開始揀餐廳啦。`;
+            // G['gSwiper'].slideTo(1, G['gSwiperDuration'], false);
+
+            // clean the item list
             document.querySelectorAll('#listings > li').forEach(o => {
                 o.remove();
             });

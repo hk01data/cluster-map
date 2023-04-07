@@ -8,16 +8,21 @@ body {
   font-family: 'Noto Sans TC', sans-serif;
 }
 
+.cover {
+  padding:0px;
+  display:inline-block;
+}
+
 .cont {
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
 }
 
-/* Nav */
+/* Nav 
 #nav {
   padding: .5rem 0 .5rem 1rem !important;
-}
+}*/
 
 svg.hk01logo_black {
   width: auto;
@@ -26,7 +31,7 @@ svg.hk01logo_black {
 }
 
 .icon {
-  display: inline-flex;
+  display:inline-block;
   align-self: center;
 }
 
@@ -42,15 +47,18 @@ svg.hk01logo_black {
 
 .navbar {
   min-height: 55px;
-  padding: 20px 0 0;
-  display: block;
+  padding: 0px 0px 0px 0px;
+  margin: 0px;
+  display:inline-block;
   background-color: #FFF !important;
 }
 
 .navbar-brand {
   height: 37px;
-  padding: 0;
+  padding: 0px;
+  margin: 0px;
   vertical-align: top;
+  display:inline-block;
 }
 
 /* .navbar-name {
@@ -63,10 +71,11 @@ svg.hk01logo_black {
 .navbar-name {
   height: 37px;
   margin-left: 0.5em;
-  display: inline-block;
+  display:inline-block;
   vertical-align: top;
   font-size: 1.5rem;
   line-height: 37px;
+
 }
 
 /* Status */
@@ -130,11 +139,12 @@ svg.hk01logo_black {
 } */
 /* Swiper */
 .swiper-pagination-bullet {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   text-align: center;
-  line-height: 20px;
-  font-size: 12px;
+  line-height: 30px;
+  font-size: 16px;
+  /* font-size: 12px; */
   color: #000;
   opacity: 1;
   background: rgba(0, 0, 0, 0.2);
@@ -176,7 +186,9 @@ svg.hk01logo_black {
   left: 0;
   bottom: -40px;
   z-index: 1;
-  box-shadow: 0 10px 40px 30px #FAFAFA;
+  /* box-shadow: 0 10px 40px 30px #FAFAFA; */
+  box-shadow:  0 10px 40px 30px #AAA;
+
 }
 
 .swiper-pagination-bullet {
@@ -186,7 +198,10 @@ svg.hk01logo_black {
 
 /* Detail Table */
 .card-body {
-  height: calc(100% - 100px);
+  height: 100%;
+  /* height: calc(100% - 100px); */
+  /* height: 290px; */
+  /* overflow-y:scroll; */
   overflow-y: auto;
 }
 
@@ -219,7 +234,7 @@ table tr td {
   padding: 0 1.25rem;
 }
 
-.card_control {
+/* .card_control {
   float: right;
   padding: 0 8px;
   background-color: transparent;
@@ -231,8 +246,33 @@ table tr td {
   text-shadow: 0 1px 0 #fff;
   opacity: .8;
   cursor: pointer;
+} */
+/* .swipeBack {
+  width: 40px;
+  height: 36px;
+  border-radius: 20px;
+  display: inline-block;
+  background-color: #007aff;
+  text-align: center;
+  line-height: 35px;
+  color: #FFF;
+} */
+.card_control {
+  width: 40px;
+  height: 40px;
+  float: right;
+  padding: 0 8px;
+  background-color: transparent;
+  border: 0;
+  font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 1;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  text-align: center;
+  opacity: .8;
+  cursor: pointer;
 }
-
 .card_control_disable {
   float: right;
   padding: 0;
@@ -244,7 +284,7 @@ table tr td {
   color: #000;
   text-shadow: 0 1px 0 #fff;
   opacity: 0.3;
-  cursor: pointer;
+  cursor: default;
 }
 
 .close-card {
@@ -267,6 +307,8 @@ table tr td {
 
 .detailCont {
   height: 100%;
+  /* height: 100px; */
+  /* overflow: auto; */
 }
 
 .openingCont {
@@ -315,7 +357,7 @@ table tr td {
 }
 
 /* Sidebar */
-/* .nav_modal.modal-dialog {
+.nav_modal.modal-dialog {
   margin: 0;
   position: absolute;
   right: 0;
@@ -329,7 +371,7 @@ table tr td {
 
 .modal-body {
   height: 100%;
-} */
+} 
 
 .sidebar {
   height: 100%;
@@ -377,6 +419,14 @@ table tr td {
   border-radius: 3px;
   float: right;
 }
+.routine {
+  background-color: rgb(176, 212, 236);
+  border-radius: 4px;
+}
+.known {
+  background-color: #f156974f;
+  border-radius: 4px;
+}
 
 .color-island {
   background-color: paleturquoise;
@@ -420,22 +470,33 @@ table tr td {
   width: 49%;
 }
 
+
 @media only screen and (max-width: 710px) {
   .wholeCard {
     bottom: 0;
-    height: 65%;
+    /* height: 65%; */
+    height: 57%;
     left: 0;
     right: 0;
     line-height: 1.8rem;
   }
 }
-
+/* @media only screen and (max-width: 1600px) and (min-width: 800px){
+  .wholeCard {
+    bottom: 0;
+    height: 65%;
+    height: 40%;
+    left: 0;
+    right: 0;
+    line-height: 1.8rem;
+  }
+}*/
 @media only screen and (min-width: 710px) {
   .wholeCard {
     max-width: 450px;
     max-height: 75%;
     width: 450px;
-    position: fixed;
+    position: block;
     top: 80px;
     left: 60px;
   }

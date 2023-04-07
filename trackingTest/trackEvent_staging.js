@@ -43,7 +43,7 @@ function getAnonymousId() {
 // Initialize the tracker client
 var myTracker = new trackerClient({
     GA: {
-        trackingId: ["UA-70981149-9", "UA-70981149-36", "UA-106000144-1"] // UA-106000144-1 is the profile for hk01data editorial team
+        trackingId: ["UA-70981149-9", "UA-70981149-36", "UA-125354638-8"] // UA-125354638-8 is the profile for hk01data editorial team
     },
     Piwik: {
         trackingUrl: "https://track.hktester.com/v2/piwik.php",  // replace with your piwik tracking url
@@ -54,11 +54,11 @@ var myTracker = new trackerClient({
 }, false);
 
 /* Config the selected article detail */
-const page_path = "社會新聞/000000/【地圖】";
-const author = "\u7C21\u6D69\u5FB7, \u9673\u5609\u6167, \u5F35\u601D\u5049, \u856D\u8F1D\u6D69";  // 簡浩德, 陳嘉慧, 張思偉, 蕭輝浩
-const channel = "\u793E\u6703\u65B0\u805E"; // 社會新聞
-const section = "\u793E\u6703\u65B0\u805E"; // 社會新聞
-const article_id = "000000";
+const page_path = "親子/324218/【小一派位地圖】";
+const author = "\u7C21\u6D69\u5FB7, \u5F35\u601D\u5049, \u856D\u8F1D\u6D69, \u9673\u5609\u6167";  // 簡浩德, 張思偉, 蕭輝浩, 陳嘉慧
+const channel = "\u793E\u6703\u65B0\u805E"; // 親子
+const section = "\u793E\u6703\u65B0\u805E"; // 親子
+const article_id = "324218";
 
 
 function fireArticlePV(url) {
@@ -86,7 +86,7 @@ function fireMapPV(url) {
     try {
         myTracker.disableGA({
             'UA-70981149-9': true, // staging
-            'UA-106000144-1': true, // hk01 data
+            'UA-125354638-8': true, // hk01 data
             'UA-70981149-36': false // data team 
         });
 
